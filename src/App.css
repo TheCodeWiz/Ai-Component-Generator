@@ -1,0 +1,95 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+html{
+  overflow-x: hidden;
+}
+
+:root{
+  --primary-color: #09090b;
+  --secondary-color: #141319;
+  --tertiary-color: #17171c;
+}
+
+.sp-text{
+  background-image: conic-gradient(at top, #c084fc, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+} 
+
+.icon{
+  padding: 15px;
+  font-size: 20px;
+  border: 1px solid #141414;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+}
+.icon:hover{
+  /* background-image: conic-gradient(at top, #c084fc, #a855f7); */
+  background-color: #676565;
+
+}
+
+textarea:hover{
+  border: 1px solid #c084fc;
+}
+
+#button-generate:hover{
+  cursor: pointer;
+  font-weight: 700;
+  opacity: .8;
+  color: rgb(43, 43, 43);
+  transition: all 0.3s ease-in-out;
+}
+
+#nav-icons .icon:hover{
+  /* background-image: conic-gradient(at top, #c084fc, #a855f7); */
+  color: rgb(43, 43, 43);
+  background-color: #c084fc;
+  opacity: .8;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+#copy:hover{
+  cursor: pointer;
+  font-weight: 700;
+  opacity: .8;
+  color: rgb(43, 43, 43);
+  background-color: #c084fc;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+#preview:hover{
+  cursor: pointer;
+  font-weight: 700;
+  opacity: .8;
+  color: rgb(43, 43, 43);
+  background-color: #c084fc;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+#openInNewTab:hover{
+  cursor: pointer;
+  font-weight: 700;
+  opacity: .8;
+  color: rgb(43, 43, 43);
+  background-color: #c084fc;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}

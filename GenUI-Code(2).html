@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GourmetGo | Login & Sign Up</title>
+    <meta name="description" content="Join GourmetGo to order delicious food from the best local restaurants, delivered right to your door. Sign up or log in to get started.">
+    <meta name="keywords" content="food delivery, login, signup, restaurant, order food, gourmetgo">
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #FFD93D;
+            --gradient-start: #FF9A8B;
+            --gradient-end: #FF6A88;
+            --white-color: #FFFFFF;
+            --light-grey: #f6f5f7;
+            --dark-grey: #333;
+            --medium-grey: #666;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, #FFF6B7, #F6416C);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            color: var(--dark-grey);
+        }
+
+        h1 {
+            font-weight: 700;
+            margin: 0 0 1rem;
+            color: var(--dark-grey);
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+
+        span {
+            font-size: 12px;
+            color: var(--medium-grey);
+        }
+
+        a {
+            color: var(--medium-grey);
+            font-size: 14px;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        button {
+            border-radius: 25px;
+            border: 1px solid var(--primary-color);
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 80ms ease-in, box-shadow 0.3s ease;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button:focus {
+            outline: none;
+        }
+        
+        button:hover {
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        button.ghost {
+            background-color: transparent;
+            border-color: var(--white-color);
+        }
+
+        form {
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+
+        .input-container {
+            position: relative;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .input-container input:focus + i {
+            color: var(--primary-color);
+        }
+
+        input {
+            background-color: var(--light-grey);
+            border: none;
+            padding: 12px 15px 12px 40px;
+            margin: 0;
+            width: 100%;
+            border-radius: 8px;
+            outline: none;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: var(--primary-color);
+            background-color: var(--white-color);
+        }
+        
+        .container {
+            background-color: var(--white-color);
+            border-radius: 20px;
+            box-shadow: 0 14px 28px var(--shadow-color), 0 10px 10px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+            min-height: 520px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInContainer 1s ease-in-out forwards;
+        }
+        
+        @keyframes fadeInContainer {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .sign-up-container {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .social-container {
+            margin: 20px 0;
+        }
+
+        .social-container a {
+            border: 1px solid #DDDDDD;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .social-container a:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-color: var(--primary-color);
+        }
+
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+
+        .overlay {
+            background: var(--primary-color);
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: var(--white-color);
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .overlay-panel h1 {
+            color: var(--white-color);
+        }
+        
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+        
+        /* Animation Classes */
+
+        /* Move sign-in to the right */
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+        }
+
+        /* Move overlay to the left */
+        .container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+
+        /* Bring sign-up over sign-in */
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: show 0.6s;
+        }
+
+        /* Move overlay back to the right */
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+        
+        /* Animate overlay panels */
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+        
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        @keyframes show {
+            0%, 49.99% {
+                opacity: 0;
+                z-index: 1;
+            }
+            50%, 100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                min-height: 600px;
+            }
+            form {
+                padding: 0 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            form {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <!-- Sign Up Form -->
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="input-container">
+                    <input type="text" placeholder="Name" required />
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-container">
+                    <input type="email" placeholder="Email" required />
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-container">
+                    <input type="password" placeholder="Password" required />
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button style="margin-top: 10px;">Sign Up</button>
+            </form>
+        </div>
+        
+        <!-- Sign In Form -->
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign In</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <div class="input-container">
+                    <input type="email" placeholder="Email" required/>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-container">
+                    <input type="password" placeholder="Password" required/>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        
+        <!-- Overlay for animation -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <!-- Left Overlay Panel (visible when on Sign In) -->
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <!-- Right Overlay Panel (visible when on Sign Up) -->
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start your culinary journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add('right-panel-active');
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove('right-panel-active');
+        });
+    </script>
+
+</body>
+</html>
